@@ -9,6 +9,7 @@ script:
   - npm run lint
   - npm run test:coveralls
 cache: 
-  npm:f alse
+  npm: false
+  
 nofications:
   email:false
