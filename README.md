@@ -7,7 +7,7 @@ the machine learning (fasttext tool for text classification) on input from a use
  
 
 
-## In first version 
+## In first release  
 Here I was using Windows 10 so I needed to download the Virtual Box and use Ubuntu for this workshop.
 to run the first version of the system you follow the following steps:
 
