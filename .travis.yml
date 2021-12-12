@@ -2,7 +2,7 @@ sudo: false
 
 Language: node_js
 
-Node_js: 
+node_js: 
  - 7
 
 script:
