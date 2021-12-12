@@ -1,9 +1,9 @@
 sudo: false
 
-language : node_js
+Language: node_js
 
-node_js:
-  - 10
+Node_js: 
+ -7
 
 script:
   - npm test
