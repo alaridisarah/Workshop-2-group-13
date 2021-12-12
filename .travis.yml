@@ -5,6 +5,3 @@ Node_js:
 
 script:
   - npm test
-
-nofications:
-  email:false
