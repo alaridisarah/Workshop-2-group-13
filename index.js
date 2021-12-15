@@ -20,6 +20,7 @@ FastText.train("supervised", config, function (success, error) {
   
 })
 
+
 app.use(cors())
 
 app.get('/', (req, res) => {
@@ -28,10 +29,11 @@ app.get('/', (req, res) => {
 
 app.get('/fasttext/', function(req, res) {
   var statement = req.param('statement');
-    res.send(getFastTextResults(statement));
+  res.send(getFastTextResults(statement));
 });
 
 function getFastTextResults(statement) {
+  var result=null;
 	//predict returns an array with the input and predictions for best cateogires
 	FastText.predict(
 		"model.bin", 3,
@@ -42,9 +44,10 @@ function getFastTextResults(statement) {
 			console.log(error)
 			return;
 		  }
-		  console.log(success)
-		})
-	return "success!";
+    result = success;     
+    }
+		)
+	return result;
 }
 
 app.listen(8000, () => {

@@ -1,17 +1,112 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Your front-end</title>
+<title>classifiction System </title>
+<style>
+header {
+  width: 1450;
+  height: 200;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+}
+body{
+	background-color: #f5f5f5;
+	position:relative;
+  max-width: 500px;
+  margin: auto;
+  width: 1450;
+  height: 200;
+  padding: 30px;
+  position:inherit;
+  text-align: center;
+
+  
+}
+table {
+  border-collapse: collapse;
+  width: 60%;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+</style>
 </head>
-
+<header class="logo">
+  <img src="https://d.top4top.io/p_217483tlm1.png" alter="logo" width="450px"height="100px">
+</header>
 <body>
-<form action="/fasttext">
-	Enter your text to be classified<br>
-	<input type="text" name="statement">
-	<input type="submit" value="Submit">
-</form> 
 
+
+
+<div style="margin: 50px;">
+<form action="/fasttext" id="rr" >
+  <div>
+	<p style="font-size: 30; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"><b>Hi! &#128525; , please enter your text to be classified :</b></p><br>
+	</div>
+  <div>
+  <input id="text" type="text" style="height: 35px;font-size: 18; width: 300px;" name="statement">
+    </div>
+  <br>
+  <div>
+	<input id="label" type="submit" style="align-items: inherit; " value="Submit" >
+  <input type="reset" value="Clear">
+  
+</div>
+
+</form>
+<div class="table">
+<table style="margin: 50px;border: black; border-width:2px ; font-size: medium; font: 1em sans-serif;border: midnightblue;" id="table">
+  <thead>
+  <tr>
+  <td style="border: black;border-width:2 ; margin: 15px;"><b>Text</b></td>
+  <td style="border: black;border-width:2 ; margin: 15px;"><b>Label</b></td>
+  <td style="border: black;border-width:2 ; margin: 15px;"><b>value</b></td>
+
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+  </table>
+  <template id="row">
+  <tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  </tr>
+  </template>
+  <script>
+  let statementValue = document.getElementById('text');
+  let label = document.getElementById('label');
+  let table = document.getElementById('table');
+  
+  
+  label.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log(statementValue.value);
+  fetch( 'http://localhost:8000/fasttext/?statement=' + statementValue.value)
+  .then(response => response.json())
+  .then(json => {
+  console.log(json)
+  let tBody = table.querySelector('tbody')
+  json.forEach(obj => {
+  var clone = document.querySelector('#row').content.cloneNode(true);
+  var td = clone.querySelectorAll("td");
+  td[0].textContent = obj.text;
+  var a= obj.label
+  a=a.replace(new RegExp("_", ''), "");
+  td[1].textContent = a;
+  td[2].textContent = obj.value;
+  tBody.appendChild(clone);
+  })
+  })
+  })
+  </script>
+  </div>
 </body>
 
 </html> 
